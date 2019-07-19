@@ -28,7 +28,6 @@ class RestaurantViewTestCase(TestCase):
         list_url = reverse("restaurant-list")
         response = self.client.get(list_url)
         for restaurant in Restaurant.objects.all():
-            self.assertIn(restaurant, response.context['restaurants'])
             self.assertContains(response, restaurant.name)
             self.assertContains(response, restaurant.description)
         self.assertTemplateUsed(response, 'list.html')
